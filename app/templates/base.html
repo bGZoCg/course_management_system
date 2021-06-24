@@ -9,16 +9,15 @@
 {% endblock %}
 
 {% block navbar %}
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <!--span class="navbar-brand mb-0 lead">功能列表</span-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light " >
         <a class="navbar-brand" href="#">
-            <img src="/static/img/logo.png" width="100" height="40" class="d-inline-block align-top" alt="">
+            <img src="../static/img/logo.png" width="100" height="40" class="d-inline-block align-top" alt="logo">
         </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto lead">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+        <ul class="navbar-nav mr-auto lead" >
         <li class="active">{% block a0 %}{% endblock %}</li>
         <li>{% block a1 %}{% endblock %}</li>
         <li>{% block a2 %}{% endblock %}</li>
@@ -27,7 +26,7 @@
         <li>{% block a5 %}{% endblock %}</li>
         <li>{% block a6 %}{% endblock %}</li>
         </ul>
-        <a class="btn btn-danger " href="{{ url_for('logout') }}">退出系统</a>
+        <a class="btn btn-default " href="{{ url_for('logout') }}">退出系统</a>
         
     </div>
 </nav>
@@ -45,6 +44,7 @@
 
         {# application content needs to be provided in the app_content block #}
         {% block app_content %}{% endblock %}
+        <p class="mt-5 mb-3 text-muted text-center"> <font size=1>内蒙古大学 © 2021</font> </p>
     </div>
 {% endblock %}
 

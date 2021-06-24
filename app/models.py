@@ -6,10 +6,13 @@ from app import login
 
 @login.user_loader
 def load_user(Num):
-    if len(Num) == 8:
+    # 账号长度大于10为学生,只有符合规定才可以get到用户
+    if len(Num) >= 10:
         return Student.query.get(Num)
+    # 账号长度==4为教师
     elif len(Num) == 4:
         return Teacher.query.get(Num)
+    # 账号长度==3为管理员
     elif len(Num) == 3:
         return Manager.query.get(Num)
     else:
@@ -24,6 +27,7 @@ class Dept(db.Model):
     DeptTel = db.Column(db.String(11))
     DeptDesc = db.Column(db.Text)
     Teachers = db.relationship('Teacher', backref='dept', lazy='dynamic')
+    # lazy='dynamic' 直接查出对象
     Majors = db.relationship('Major', backref='dept', lazy='dynamic')
     Courses = db.relationship('Course', backref='dept', lazy='dynamic')
 
@@ -103,7 +107,7 @@ class Teacher(UserMixin, db.Model):
 
 class Student(UserMixin, db.Model):
     # 学生
-    StudentNum = db.Column(db.String(8), primary_key=True)
+    StudentNum = db.Column(db.String(10), primary_key=True)
     MajorNum = db.Column(db.String(16), db.ForeignKey('major.MajorNum'), nullable=False)
     StudentName = db.Column(db.String(10), nullable=False)
     StudentSex = db.Column(db.String(10), nullable=False)
@@ -176,3 +180,9 @@ class Manager(UserMixin, db.Model):
 class TrainingProgram(db.Model):
     # 培养计划
     TPNumber = db.Column(db.String(7), primary_key=True)
+
+
+# 更改models以后可以先python ./manage.py db migrate 再python ./manage.py db upgrade进行更新
+
+class SelectorStudent(db.Model):
+    SelectorStudentNum = db.Column(db.String(8), primary_key=True)

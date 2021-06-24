@@ -1,10 +1,10 @@
 {% extends "student/student.html" %}
 
 {% block app_content %}
-<div class="container mb-4"></div>
-<h1 class="display-6" align="center">成绩查询</h1>
+    <div class="container mb-4"></div>
+    <h1 class="display-6" align="center">成绩查询</h1>
     <table class="table table-striped table-hover">
-            <thead class="thead-dark">
+        <thead class="thead-dark">
         <tr>
             <th class="lead">课程号</th>
             <th class="lead">课程名</th>
@@ -17,21 +17,21 @@
         </thead>
         <tbody>
         {% if tables %}
-        {% for table in tables %}
-        <tr>
-           <td class="lead">{{ table.CourseNum }}</td>
-           <td class="lead">{{ table.CourseName }}</td>
-           <td class="lead">{{ table.CourseCredit }}</td>
-           <td class="lead">{{ table.CourseTime }}</td>
-           <td class="lead">{{ table.CourseDept }}</td>
-           <td class="lead">{{ table.TeacherName }}</td>
-           {% if table.Grade %}
-           <td class="lead">{{ table.Grade }}</td>
-           {% else %}
-           <td class="lead">暂无</tr>
-           {% endif %}
-        </tr>
-        {% endfor %}
+            {% for table in tables %}
+                <tr>
+                    <td class="lead">{{ table.CourseNum }}</td>
+                    <td class="lead">{{ table.CourseName }}</td>
+                    <td class="lead">{{ table.CourseCredit }}</td>
+                    <td class="lead">{{ table.CourseTime }}</td>
+                    <td class="lead">{{ table.CourseDept }}</td>
+                    <td class="lead">{{ table.TeacherName }}</td>
+                    {% if table.Grade %}
+                        <td class="lead">{{ table.Grade }}</td>
+                    {% else %}
+                        <td class="lead">暂无</tr>
+                    {% endif %}
+                </tr>
+            {% endfor %}
         {% endif %}
         </tbody>
     </table>
